@@ -3,6 +3,7 @@
   email = __USER_EMAIL__
 [core]
   excludesfile = $HOME/.gitexcludes
+  pager = less -r
 [alias]
   co = checkout
   st = status -sb
