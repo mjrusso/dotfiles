@@ -1,6 +1,7 @@
 #!/bin/sh
 #
-# Quick shortcut to an editor.
+# Quick shortcut to Emacs (opens in the current (most recently used) terminal
+# or GUI frame).
 #
 # USAGE:
 #
@@ -13,7 +14,7 @@
 
 if test "$1" == ""
 then
-  $($EDITOR --no-wait --create-frame .)
+  $($EDITOR --no-wait .)
 else
-  $($EDITOR --no-wait --create-frame $1)
+  $($EDITOR --no-wait $1)
 fi
