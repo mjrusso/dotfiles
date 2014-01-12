@@ -13,8 +13,17 @@ then
   source ~/.localrc
 fi
 
-export PATH="/usr/local/share/python:/usr/local/bin:/usr/local/sbin:$DOTFILES/bin:$PATH"
+export PATH="/usr/local/share/python:/usr/local/Cellar/ruby/1.9.3-p194/bin:/usr/texbin/:/usr/local/bin:/usr/local/sbin:$DOTFILES/bin:$PATH"
 
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 
 export EDITOR='/usr/local/bin/emacsclient'
+
+# {{{
+# Node Completion - Auto-generated, do not touch.
+shopt -s progcomp
+for f in $(command ls ~/.node-completion); do
+  f="$HOME/.node-completion/$f"
+  test -f "$f" && . "$f"
+done
+# }}}
