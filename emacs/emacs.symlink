@@ -6,6 +6,8 @@
 
 (require 'package)
 (add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (package-initialize)
 
@@ -13,11 +15,14 @@
   (package-refresh-contents))
 
 (defvar my-packages '(starter-kit
+                      bm
                       coffee-mode
                       color-theme
                       color-theme-solarized
                       color-theme-ir-black
                       clojure-mode
+                      deft
+                      ecb
                       find-file-in-project
                       find-things-fast
                       gist
@@ -37,6 +42,7 @@
                       quack
                       ruby-mode
                       textmate
+                      writeroom-mode
                       yaml-mode)
   "A list of packages to ensure are installed at launch.")
 
@@ -59,6 +65,8 @@
 ;; start a single emacs server
 (server-start)
 
+(require 'find-things-fast)
+
 ;; Set default font to Source Code Pro.
 ;; - https://github.com/adobe/Source-Code-Pro
 ;; - http://blogs.adobe.com/typblography/2012/09/source-code-pro.html
@@ -70,6 +78,9 @@
 (setq color-theme-is-global nil)
 
 (color-theme-solarized-dark)
+
+;; Try this in terminal mode:
+;; (set-background-color nil)
 
 (add-hook 'after-make-frame-functions
           (lambda (frame)
@@ -100,6 +111,36 @@
 (defun ido-disable-line-trucation () (set (make-local-variable 'truncate-lines) nil))
 (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
 
+;; ecb configuration
+(require 'ecb-autoloads)
+(global-set-key (kbd "C-1") 'ecb-toggle-ecb-windows)
+(global-set-key (kbd "C-2") 'ecb-goto-window-directories)
+(global-set-key (kbd "C-3") 'ecb-goto-window-history)
+(global-set-key (kbd "C-4") 'ecb-goto-window-edit1)
+(global-set-key (kbd "C-5") 'ecb-goto-window-edit2)
+(setq
+ ecb-layout-name "left14"
+ ecb-options-version "2.40"
+ ecb-show-sources-in-directories-buffer (quote always)
+ ecb-source-file-regexps (quote ((".*" ("\\(^\\(\\.\\|#\\)\\|\\(~$\\|\\.\\(pyc\\|elc\\|obj\\|o\\|class\\|lib\\|dll\\|a\\|so\\|cache\\)$\\)\\)") ("^\\.\\(emacs\\|gnus\\)$"))))
+ ecb-source-path
+  (quote
+   (("/" "/")
+    ("~/" "~")
+    ("~/Desktop/" "Desktop")
+    ("~/Documents/Projects/" "Projects")
+    ("~/Documents/Development/" "Development")
+    ("~/Documents/Work/Polar/git/" "Polar - git")
+    ))
+ ecb-split-edit-window-after-start (quote horizontal)
+ ecb-tip-of-the-day nil
+ ecb-tree-buffer-style (quote ascii-no-guides)
+ ecb-tree-indent 0
+ ecb-tree-make-parent-node-sticky nil
+ ecb-vc-enable-support t
+ ecb-windows-width 0.20)
+(ecb-minor-mode)
+
 ;; enable textmate minor mode
 (textmate-mode)
 
@@ -120,6 +161,14 @@
   (make-local-variable 'tab-width)
   (set 'tab-width 2))
 (add-hook 'coffee-mode-hook 'coffee-custom)
+
+;; nrepl configuration
+(require 'nrepl)
+(setq nrepl-popup-stacktraces nil)
+(add-hook 'nrepl-mode-hook
+          (lambda () (setq show-trailing-whitespace nil)))
+(add-hook 'nrepl-interaction-mode-hook
+          'nrepl-turn-on-eldoc-mode)
 
 ;; configure the file extensions used by markdown mode
 (setq auto-mode-alist
@@ -180,6 +229,39 @@
 (global-set-key (kbd "s-{") 'switch-to-prev-buffer)
 (global-set-key (kbd "s-}") 'switch-to-next-buffer)
 
+;; Configure Deft. (http://jblevins.org/projects/deft/)
+;; Additional resources:
+;; - http://emacs-fu.blogspot.ca/2011/09/quick-note-taking-with-deft-and-org.html
+;; - http://www.jontourage.com/2013/08/15/setting-up-deft-mode-in-emacs-with-org-mode/
+;; - http://www.emacswiki.org/emacs/DeftMode
+(when (require 'deft nil 'noerror)
+   (setq
+      deft-extension "org"
+      deft-directory "~/Dropbox/org/"
+      deft-text-mode 'org-mode
+      deft-auto-save-interval 0))
+
+;; bm (https://github.com/joodland/bm)
+(require 'bm)
+(setq bm-cycle-all-buffers nil)
+(defun bm-next-all ()
+  (interactive)
+  (let ((is-cycling-all bm-cycle-all-buffers))
+    (setq bm-cycle-all-buffers t)
+    (bm-next)
+    (setq bm-cycle-all-buffers is-cycling-all)))
+(defun bm-next-previous ()
+  (interactive)
+  (let ((is-cycling-all bm-cycle-all-buffers))
+    (setq bm-cycle-all-buffers t)
+    (bm-previous)
+    (setq bm-cycle-all-buffers is-cycling-all)))
+(global-set-key (kbd "M-0") 'bm-toggle)
+(global-set-key (kbd "M--") 'bm-next)
+(global-set-key (kbd "M-=") 'bm-previous)
+(global-set-key (kbd "M-_") 'bm-next-previous)
+(global-set-key (kbd "M-+") 'bm-next-all)
+
 ;; Support for Scheme.
 (require 'quack)
 
@@ -212,3 +294,17 @@
       (set-window-start w1 s2)
       (set-window-start w2 s1)))
   (other-window 1))
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ecb-options-version "2.40")
+ '(quack-programs (quote ("mzscheme" "bigloo" "csi" "csi -hygienic" "gosh" "gracket" "gsi" "gsi ~~/syntax-case.scm -" "guile" "kawa" "mit-scheme" "racket" "racket -il typed/racket" "rs" "scheme" "scheme48" "scsh" "sisc" "stklos" "sxi"))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(hl-line ((t nil))))
