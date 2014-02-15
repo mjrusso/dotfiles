@@ -160,7 +160,11 @@
 ;; Configure Fountain Mode.
 (require 'fountain-mode)
 (add-to-list 'auto-mode-alist '("\\.fountain$" . fountain-mode))
+;; Don't indent elements.
 (setq fountain-indent-elements nil)
+;; Use visual line mode by default.
+(add-hook 'fountain-mode-hook 'turn-off-auto-fill)
+(add-hook 'fountain-mode-hook 'turn-on-visual-line-mode)
 
 ;; set indentation in coffee mode
 (defun coffee-custom ()
