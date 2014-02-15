@@ -25,6 +25,7 @@
                       ecb
                       find-file-in-project
                       find-things-fast
+                      fountain-mode
                       gist
                       highlight-indentation
                       idle-highlight-mode
@@ -156,6 +157,11 @@
 ;; enable mustache major mode (for editing mustache templates)
 (require 'mustache-mode)
 
+;; Configure Fountain Mode.
+(require 'fountain-mode)
+(add-to-list 'auto-mode-alist '("\\.fountain$" . fountain-mode))
+(setq fountain-indent-elements nil)
+
 ;; set indentation in coffee mode
 (defun coffee-custom ()
   (make-local-variable 'tab-width)
@@ -210,8 +216,13 @@
 ;; display trailing whitespace
 (setq-default show-trailing-whitespace t)
 
-;; automatically delete trailing whitespace
-(add-hook 'write-file-hooks 'delete-trailing-whitespace)
+;; Automatically delete trailing whitespace, except in the case of Fountain
+;; Mode. (Fountain relies on trailing whitespace in certain circumstances.)
+(add-hook 'before-save-hook 'my-nuke-trailing-whitespace)
+(defun my-nuke-trailing-whitespace ()
+  ;; Note additional option: https://github.com/lewang/ws-butler
+  (when (not (derived-mode-p 'fountain-mode))
+    (delete-trailing-whitespace)))
 
 ;; do not scroll dramatically when moving one line at a time
 (setq-default scroll-conservatively 1)
