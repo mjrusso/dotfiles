@@ -1,13 +1,27 @@
 [user]
   name = __USER_NAME__
   email = __USER_EMAIL__
+[push]
+  default = current
 [core]
   excludesfile = $HOME/.gitexcludes
-  pager = less -r
 [alias]
-  co = checkout
-  st = status -sb
-  su = submodule update
+  d   = diff
+  dc  = diff --cached
+  f   = fetch
+  fo  = fetch origin
+  co  = checkout
+  com = checkout master
+  pom = pull origin master
+  cod = checkout develop
+  pod = pull origin develop
+  st  = status -sb
+  su  = submodule update
+  up  = !git pull --rebase --prune $@ && git submodule update --init --recursive
+  save  = !git add -A && git commit -m 'SAVEPOINT'
+  wip   = !git add -u && git commit -m "WIP"
+  undo  = reset HEAD~1 --mixed
+  amend = commit -a --amend
   shortsha = rev-parse --short HEAD
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   wc = whatchanged --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
