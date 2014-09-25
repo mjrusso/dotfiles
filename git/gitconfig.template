@@ -4,7 +4,7 @@
 [push]
   default = current
 [core]
-  excludesfile = $HOME/.gitexcludes
+  excludesfile = ~/.gitexcludes
 [alias]
   d   = diff
   dc  = diff --cached
