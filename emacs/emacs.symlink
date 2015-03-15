@@ -18,7 +18,6 @@
                       color-theme-ir-black
                       clojure-mode
                       deft
-                      ecb
                       find-file-in-project
                       find-things-fast
                       flx-ido
@@ -124,36 +123,6 @@
 (setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
 (defun ido-disable-line-trucation () (set (make-local-variable 'truncate-lines) nil))
 (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
-
-;; ecb configuration
-(require 'ecb-autoloads)
-(global-set-key (kbd "C-1") 'ecb-toggle-ecb-windows)
-(global-set-key (kbd "C-2") 'ecb-goto-window-directories)
-(global-set-key (kbd "C-3") 'ecb-goto-window-history)
-(global-set-key (kbd "C-4") 'ecb-goto-window-edit1)
-(global-set-key (kbd "C-5") 'ecb-goto-window-edit2)
-(setq
- ecb-layout-name "left14"
- ecb-options-version "2.40"
- ecb-show-sources-in-directories-buffer (quote always)
- ecb-source-file-regexps (quote ((".*" ("\\(^\\(\\.\\|#\\)\\|\\(~$\\|\\.\\(pyc\\|elc\\|obj\\|o\\|class\\|lib\\|dll\\|a\\|so\\|cache\\)$\\)\\)") ("^\\.\\(emacs\\|gnus\\)$"))))
- ecb-source-path
-  (quote
-   (("/" "/")
-    ("~/" "~")
-    ("~/Desktop/" "Desktop")
-    ("~/Documents/Projects/" "Projects")
-    ("~/Documents/Development/" "Development")
-    ("~/Documents/Work/Polar/git/" "Polar - git")
-    ))
- ecb-split-edit-window-after-start (quote horizontal)
- ecb-tip-of-the-day nil
- ecb-tree-buffer-style (quote ascii-no-guides)
- ecb-tree-indent 0
- ecb-tree-make-parent-node-sticky nil
- ecb-vc-enable-support t
- ecb-windows-width 0.20)
-(ecb-minor-mode)
 
 ;; enable textmate minor mode
 (textmate-mode)
