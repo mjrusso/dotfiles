@@ -80,6 +80,21 @@
 ;; projectile
 ;; - https://github.com/bbatsov/projectile
 (projectile-global-mode)
+(setq projectile-use-git-grep t)
+(setq projectile-enable-caching t)
+(setq projectile-require-project-root nil)
+(setq projectile-globally-ignored-directories
+      (append '("build"
+                "eggs"
+                "git-eggs"
+                "develop-eggs"
+                "node_modules"
+                "log"
+                "tmp")
+              projectile-globally-ignored-directories))
+;; S-r: search entire project
+;; C-u S-r (or M-1 S-r): allows user to specify search directory
+(global-set-key [(super r)] 'projectile-grep)
 
 (require 'find-things-fast)
 
