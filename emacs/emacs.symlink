@@ -21,6 +21,7 @@
                       ecb
                       find-file-in-project
                       find-things-fast
+                      flx-ido
                       fountain-mode
                       gist
                       highlight-indentation
@@ -61,6 +62,20 @@
 
 ;; start a single emacs server
 (server-start)
+
+;; flx-ido
+;; - https://github.com/lewang/flx
+(require 'flx-ido)
+(ido-mode 1)
+(ido-everywhere 1)
+(flx-ido-mode 1)
+;; disable ido faces to see flx highlights.
+(setq ido-enable-flex-matching t)
+(setq ido-use-faces nil)
+
+;; projectile
+;; - https://github.com/bbatsov/projectile
+(projectile-global-mode)
 
 (require 'find-things-fast)
 
