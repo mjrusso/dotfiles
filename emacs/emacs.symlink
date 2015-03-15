@@ -256,24 +256,10 @@
 
 ;; bm (https://github.com/joodland/bm)
 (require 'bm)
+
+;; Set up bookmark (bm, https://github.com/joodland/bm). This option makes
+;; `bm-toggle` toggle only between bookmarks in the *current* buffer.
 (setq bm-cycle-all-buffers nil)
-(defun bm-next-all ()
-  (interactive)
-  (let ((is-cycling-all bm-cycle-all-buffers))
-    (setq bm-cycle-all-buffers t)
-    (bm-next)
-    (setq bm-cycle-all-buffers is-cycling-all)))
-(defun bm-next-previous ()
-  (interactive)
-  (let ((is-cycling-all bm-cycle-all-buffers))
-    (setq bm-cycle-all-buffers t)
-    (bm-previous)
-    (setq bm-cycle-all-buffers is-cycling-all)))
-(global-set-key (kbd "M-0") 'bm-toggle)
-(global-set-key (kbd "M--") 'bm-next)
-(global-set-key (kbd "M-=") 'bm-previous)
-(global-set-key (kbd "M-_") 'bm-next-previous)
-(global-set-key (kbd "M-+") 'bm-next-all)
 
 ;; misc functions, from emacs-prelude
 ;; https://github.com/bbatsov/emacs-prelude/blob/master/modules/prelude-core.el
