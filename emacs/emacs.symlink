@@ -30,7 +30,7 @@
                       magit
                       markdown-mode
                       mustache-mode
-                      nrepl
+                      ;; nrepl
                       org
                       org-magit
                       paredit
@@ -185,13 +185,13 @@
   (set 'tab-width 2))
 (add-hook 'coffee-mode-hook 'coffee-custom)
 
-;; nrepl configuration
-(require 'nrepl)
-(setq nrepl-popup-stacktraces nil)
-(add-hook 'nrepl-mode-hook
-          (lambda () (setq show-trailing-whitespace nil)))
-(add-hook 'nrepl-interaction-mode-hook
-          'nrepl-turn-on-eldoc-mode)
+;; ;; nrepl configuration
+;; (require 'nrepl)
+;; (setq nrepl-popup-stacktraces nil)
+;; (add-hook 'nrepl-mode-hook
+;;           (lambda () (setq show-trailing-whitespace nil)))
+;; (add-hook 'nrepl-interaction-mode-hook
+;;           'nrepl-turn-on-eldoc-mode)
 
 ;; configure the file extensions used by markdown mode
 (setq auto-mode-alist
