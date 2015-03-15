@@ -26,6 +26,7 @@
                       gist
                       highlight-indentation
                       idle-highlight-mode
+                      lua-mode
                       magit
                       markdown-mode
                       mustache-mode
