@@ -14,6 +14,9 @@
                       bm
                       coffee-mode
                       color-theme
+                      color-theme-library
+                      color-theme-molokai
+                      color-theme-monokai
                       color-theme-solarized
                       color-theme-ir-black
                       clojure-mode
@@ -86,6 +89,7 @@
 (add-to-list 'default-frame-alist '(font . "-apple-Source_Code_Pro-medium-normal-normal-*-12-*-*-*-m-0-iso10646-1"))
 
 (require 'color-theme)
+(require 'color-theme-library)
 (require 'color-theme-solarized)
 (require 'color-theme-ir-black)
 (setq color-theme-is-global nil)
@@ -102,7 +106,7 @@
   (load-theme 'solarized t)
   (enable-theme 'solarized))
 
-(color-theme-set-solarized-dark)
+(color-theme-monokai)
 
 ;; Try this in terminal mode:
 ;; (set-background-color nil)
@@ -111,7 +115,7 @@
           (lambda (frame)
              (select-frame frame)
              (if (window-system frame)
-                 (color-theme-set-solarized-dark)
+                 (color-theme-monokai)
                  (color-theme-ir-black))))
 
 ;; Enable mouse support in terminal.
