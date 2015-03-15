@@ -91,7 +91,19 @@
 (require 'color-theme-ir-black)
 (setq color-theme-is-global nil)
 
-(color-theme-solarized-dark)
+(defun color-theme-set-solarized-light ()
+  (interactive)
+  (setq frame-background-mode 'light)
+  (load-theme 'solarized t)
+  (enable-theme 'solarized))
+
+(defun color-theme-set-solarized-dark ()
+  (interactive)
+  (setq frame-background-mode 'dark)
+  (load-theme 'solarized t)
+  (enable-theme 'solarized))
+
+(color-theme-set-solarized-dark)
 
 ;; Try this in terminal mode:
 ;; (set-background-color nil)
@@ -100,7 +112,7 @@
           (lambda (frame)
              (select-frame frame)
              (if (window-system frame)
-                 (color-theme-solarized-dark)
+                 (color-theme-set-solarized-dark)
                  (color-theme-ir-black))))
 
 ;; Enable mouse support in terminal.
