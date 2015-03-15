@@ -33,6 +33,7 @@
                       org
                       org-magit
                       paredit
+                      projectile
                       pyflakes
                       pylint
                       python-mode
