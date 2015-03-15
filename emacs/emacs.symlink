@@ -161,10 +161,7 @@
 (add-hook 'fountain-mode-hook 'turn-on-visual-line-mode)
 
 ;; set indentation in coffee mode
-(defun coffee-custom ()
-  (make-local-variable 'tab-width)
-  (set 'tab-width 2))
-(add-hook 'coffee-mode-hook 'coffee-custom)
+(custom-set-variables '(coffee-tab-width 2))
 
 ;; ;; nrepl configuration
 ;; (require 'nrepl)
