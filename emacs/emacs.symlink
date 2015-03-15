@@ -1,9 +1,5 @@
 ;; -*- mode: emacs-lisp -*-
 
-;; note: in order for flyspell to work, aspell must be installed
-;; $ brew install aspell --lang=en
-;; NOTE: still having issues with flyspell -- need to investigate
-
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
@@ -243,6 +239,10 @@
 ;; Switch to prev/ next buffer using OS X keybindings
 (global-set-key (kbd "s-{") 'switch-to-prev-buffer)
 (global-set-key (kbd "s-}") 'switch-to-next-buffer)
+
+;; Spell checking with Flyspell.
+;; Requires aspell: $ brew install aspell --lang=en
+(add-hook 'text-mode-hook 'flyspell-mode)
 
 ;; Configure Deft. (http://jblevins.org/projects/deft/)
 ;; Additional resources:
