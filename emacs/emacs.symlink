@@ -41,6 +41,7 @@
                       quack
                       ruby-mode
                       textmate
+                      typo
                       writeroom-mode
                       yaml-mode)
   "A list of packages to ensure are installed at launch.")
@@ -225,6 +226,9 @@
 ;; Switch to prev/ next buffer using OS X keybindings
 (global-set-key (kbd "s-{") 'switch-to-prev-buffer)
 (global-set-key (kbd "s-}") 'switch-to-next-buffer)
+
+;; Enable typo.el.
+(add-hook 'text-mode-hook 'typo-mode)
 
 ;; Spell checking with Flyspell.
 ;; Requires aspell: $ brew install aspell --lang=en
