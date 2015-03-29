@@ -254,8 +254,26 @@
 (global-set-key (kbd "s-{") 'switch-to-prev-buffer)
 (global-set-key (kbd "s-}") 'switch-to-next-buffer)
 
-;; Enable typo.el.
+;; Enable and configure typo.el.
 (add-hook 'text-mode-hook 'typo-mode)
+
+(define-typo-cycle typo-cycle-right-single-quotation-mark
+  "Cycle through the typewriter apostrophe and the right quotation mark."
+  ("'" "’" ))
+
+(define-typo-cycle typo-cycle-left-single-quotation-mark
+  "Cycle through the backtick and the left single quotation mark."
+  ("`" "‘"))
+
+(define-typo-cycle typo-cycle-dashes
+  "Cycle through various dashes."
+  ("-" ; HYPHEN-MINUS
+   "—" ; EM DASH
+   "–" ; EN DASH
+   "−" ; MINUS SIGN
+   "‐" ; HYPHEN
+   "‑" ; NON-BREAKING HYPHEN
+  ))
 
 ;; Spell checking with Flyspell.
 ;; Requires aspell: $ brew install aspell --lang=en
