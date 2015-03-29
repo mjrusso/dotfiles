@@ -261,6 +261,9 @@
 ;; Requires aspell: $ brew install aspell --lang=en
 (add-hook 'text-mode-hook 'flyspell-mode)
 
+;; Configure writeroom mode.
+(custom-set-variables '(writeroom-maximize-window nil))
+
 ;; Configure Deft. (http://jblevins.org/projects/deft/)
 ;; Additional resources:
 ;; - http://emacs-fu.blogspot.ca/2011/09/quick-note-taking-with-deft-and-org.html
