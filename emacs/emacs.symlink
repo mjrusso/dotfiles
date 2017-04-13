@@ -28,11 +28,13 @@
                       gist
                       highlight-indentation
                       idle-highlight-mode
+                      imenu-list
                       lua-mode
                       magit
                       markdown-mode
                       mustache-mode
                       ;; nrepl
+                      olivetti
                       org
                       org-magit
                       paredit
@@ -174,9 +176,23 @@
 ;; Use visual line mode by default.
 (add-hook 'fountain-mode-hook 'turn-off-auto-fill)
 (add-hook 'fountain-mode-hook 'turn-on-visual-line-mode)
+;; Use Olivetti by default.
+(add-hook 'fountain-mode-hook 'turn-on-olivetti-mode)
+(defun hide-fringes ()
+  (interactive)
+  ;; (set-face-attribute 'fringe nil :background "#272822" :foreground "#FFFFFF")
+  (set-window-fringes nil 0 0))
+(add-hook 'fountain-mode-hook 'hide-fringes)
 
 ;; set indentation in coffee mode
-(custom-set-variables '(coffee-tab-width 2))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(coffee-tab-width 2)
+ '(ns-use-native-fullscreen nil)
+ '(writeroom-maximize-window nil))
 
 ;; ;; nrepl configuration
 ;; (require 'nrepl)
@@ -281,9 +297,6 @@
 ;; Requires aspell: $ brew install aspell --lang=en
 (add-hook 'text-mode-hook 'flyspell-mode)
 
-;; Configure writeroom mode.
-(custom-set-variables '(writeroom-maximize-window nil))
-
 ;; Configure Deft. (http://jblevins.org/projects/deft/)
 ;; Additional resources:
 ;; - http://emacs-fu.blogspot.ca/2011/09/quick-note-taking-with-deft-and-org.html
@@ -333,15 +346,11 @@
       (set-window-start w2 s1)))
   (other-window 1))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ns-use-native-fullscreen nil))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(hl-line ((t nil)) t))
+ '(fountain-scene-heading ((t (:weight bold))))
+ '(hl-line ((t nil))))
