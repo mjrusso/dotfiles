@@ -216,6 +216,10 @@
                         mwheel-scroll))
           (ding))))
 
+;; actually, don't trigger the alarm bell
+(setq ring-bell-function
+      (lambda ()))
+
 ;; move point from window to window using shift and the arrow keys
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
