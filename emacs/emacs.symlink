@@ -42,7 +42,6 @@
                       python-mode
                       python-pep8
                       ruby-mode
-                      textmate
                       typo
                       writeroom-mode
                       yaml-mode)
@@ -154,9 +153,6 @@
 (setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
 (defun ido-disable-line-trucation () (set (make-local-variable 'truncate-lines) nil))
 (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
-
-;; enable textmate minor mode
-(textmate-mode)
 
 ;; use clojure-mode to edit ClojureScript files
 (add-to-list 'auto-mode-alist '("\.cljs$" . clojure-mode))
