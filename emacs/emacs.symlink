@@ -275,6 +275,8 @@
 
 (add-hook 'markdown-mode-hook 'typo-mode)
 
+(setq-default typo-language "English")
+
 (define-typo-cycle typo-cycle-right-single-quotation-mark
   "Cycle through the typewriter apostrophe and the right quotation mark."
   ("'" "’" ))
