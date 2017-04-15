@@ -273,7 +273,7 @@
 ;; Enable and configure typo.el.
 (require 'typo)
 
-(add-hook 'text-mode-hook 'typo-mode)
+(add-hook 'markdown-mode-hook 'typo-mode)
 
 (define-typo-cycle typo-cycle-right-single-quotation-mark
   "Cycle through the typewriter apostrophe and the right quotation mark."
