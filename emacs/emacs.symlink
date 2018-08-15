@@ -102,7 +102,7 @@
 ;; Set default font to Source Code Pro.
 ;; - https://github.com/adobe/Source-Code-Pro
 ;; - http://blogs.adobe.com/typblography/2012/09/source-code-pro.html
-(add-to-list 'default-frame-alist '(font . "-apple-Source_Code_Pro-medium-normal-normal-*-12-*-*-*-m-0-iso10646-1"))
+(add-to-list 'default-frame-alist '(font . "Source Code Pro Medium"))
 
 (require 'color-theme)
 (require 'color-theme-library)
