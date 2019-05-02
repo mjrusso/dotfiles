@@ -17,6 +17,7 @@
   pod = pull origin develop
   st  = status -sb
   su  = submodule update
+  g   = grep --break --heading --line-number
   up  = !git pull --rebase --prune $@ && git submodule update --init --recursive
   save  = !git add -A && git commit -m 'SAVEPOINT'
   wip   = !git add -u && git commit -m "WIP"
