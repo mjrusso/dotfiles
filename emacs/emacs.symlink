@@ -38,6 +38,7 @@
                       org
                       org-magit
                       paredit
+                      prettier-js
                       projectile
                       pyflakes
                       pylint
@@ -45,6 +46,7 @@
                       python-pep8
                       ruby-mode
                       typo
+                      web-mode
                       writeroom-mode
                       yaml-mode)
   "A list of packages to ensure are installed at launch.")
@@ -192,6 +194,9 @@
  ;; If there is more than one, they won't work right.
  '(coffee-tab-width 2)
  '(ns-use-native-fullscreen nil)
+ '(package-selected-packages
+   (quote
+    (web-mode prettier-js yaml-mode writeroom-mode typo textmate swift-mode starter-kit s python-pep8 python-mode pylint pyflakes projectile org-magit olivetti mustache-mode markdown-mode lua-mode imenu-list highlight-indentation go-mode git-rebase-mode git-commit-mode gist fountain-mode flycheck flx-ido find-things-fast deft color-theme-solarized color-theme-monokai color-theme-molokai color-theme-library color-theme-ir-black coffee-mode clojure-mode bm)))
  '(writeroom-maximize-window nil))
 
 ;; ;; nrepl configuration
@@ -217,6 +222,21 @@
 ;; Use visual line mode by default for org files.
 (add-hook 'org-mode-hook 'turn-off-auto-fill)
 (add-hook 'org-mode-hook 'turn-on-visual-line-mode)
+
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+
+(require 'prettier-js)
+(add-hook 'web-mode-hook 'prettier-js-mode)
 
 ;; reduce the number of signals that can trigger the alarm bell
 (setq ring-bell-function
@@ -355,4 +375,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(fountain-scene-heading ((t (:weight bold))))
- '(hl-line ((t nil))))
+ '(hl-line ((t nil)) t))
