@@ -3,6 +3,13 @@ set -x PATH /usr/local/share/npm/bin /usr/local/Cellar/ruby/1.9.3-p194/bin /usr/
 set -x MANPATH /usr/local/man /usr/local/mysql/man /usr/local/git/man $MANPATH
 set -x EDITOR /usr/local/bin/emacsclient
 
+# https://medium.com/@joshuacrass/nvm-on-mac-for-fish-users-e00af124c540
+function nvm
+   bass source (brew --prefix nvm)/nvm.sh --no-use ';' nvm $argv
+end
+set -x NVM_DIR ~/.nvm
+nvm use default --silent
+
 # Adapted from http://notsnippets.tumblr.com/post/894091013/fish-function-of-the-day-prompt-with-git-branch
 function fish_prompt --description 'Write out the prompt'
 
