@@ -3,6 +3,8 @@ mjrusso's dotfiles
 
 My personalized system configuration. ([Inspiration](http://zachholman.com/2010/08/dotfiles-are-meant-to-be-forked/))
 
+Also see: [my Emacs configuration](https://github.com/mjrusso/.emacs.d).
+
 installation
 ------------
 
