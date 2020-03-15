@@ -77,7 +77,7 @@ task :install => [:generate_gitconfig_from_template] do
     `ln -s "$PWD/#{path}" "#{target}"`
   end
 
-  `source "$HOME/.bash_profile"`
+  `source ~/.config/fish/config.fish`
 
 end
 
