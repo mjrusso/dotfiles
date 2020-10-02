@@ -1,5 +1,5 @@
 set -x DOTFILES $HOME/.dotfiles
-set -x PATH /usr/local/bin $DOTFILES/bin ~/bin $PATH
+set -x PATH /usr/local/bin $HOME/.cargo/bin $DOTFILES/bin ~/bin $PATH
 set -x MANPATH /usr/local/man /usr/local/mysql/man /usr/local/git/man $MANPATH
 set -x EDITOR /usr/local/bin/emacsclient
 
