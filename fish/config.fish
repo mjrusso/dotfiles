@@ -37,4 +37,13 @@ function fish_prompt
     printf '%s %s $ ' (prompt_pwd) (fish_git_prompt)
 end
 
+# Shell-side configuration for vterm.
+# https://github.com/akermu/emacs-libvterm#shell-side-configuration
+# https://github.com/akermu/emacs-libvterm#shell-side-configuration-files
+if [ "$INSIDE_EMACS" = 'vterm' ]
+   if test -n "$EMACS_VTERM_PATH"
+       if test -f "$EMACS_VTERM_PATH/etc/emacs-vterm.fish"
+          source "$EMACS_VTERM_PATH/etc/emacs-vterm.fish"
+       end
+   end
 end
