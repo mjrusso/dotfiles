@@ -10,42 +10,31 @@ end
 set -x NVM_DIR ~/.nvm
 nvm use default --silent
 
-# Adapted from http://notsnippets.tumblr.com/post/894091013/fish-function-of-the-day-prompt-with-git-branch
-function fish_prompt --description 'Write out the prompt'
+# https://fishshell.com/docs/current/cmds/fish_git_prompt.html
+# https://mariuszs.github.io/blog/2013/informative_git_prompt.html
+function fish_prompt
+    set -g __fish_git_prompt_show_informative_status 1
+    set -g __fish_git_prompt_hide_untrackedfiles 1
 
-    if not set -q __fish_prompt_hostname
-        set -g __fish_prompt_hostname (hostname|cut -d . -f 1)
-    end
+    set -g __fish_git_prompt_color_branch magenta
+    set -g __fish_git_prompt_showupstream "informative"
+    set -g __fish_git_prompt_char_upstream_ahead "↑"
+    set -g __fish_git_prompt_char_upstream_behind "↓"
+    set -g __fish_git_prompt_char_upstream_prefix ""
 
-    if not set -q __fish_prompt_normal
-        set -g __fish_prompt_normal (set_color normal)
-    end
+    set -g __fish_git_prompt_char_stagedstate "●"
+    set -g __fish_git_prompt_char_dirtystate "✚"
+    set -g __fish_git_prompt_char_untrackedfiles "…"
+    set -g __fish_git_prompt_char_conflictedstate "✖"
+    set -g __fish_git_prompt_char_cleanstate "✔"
 
-    if not set -q __git_cb
-        set __git_cb ":"(set_color brown)(git branch ^/dev/null | grep \* | sed 's/* //')(set_color normal)""
-    end
+    set -g __fish_git_prompt_color_dirtystate blue
+    set -g __fish_git_prompt_color_stagedstate yellow
+    set -g __fish_git_prompt_color_invalidstate red
+    set -g __fish_git_prompt_color_untrackedfiles $fish_color_normal
+    set -g __fish_git_prompt_color_cleanstate green
 
-    switch $USER
+    printf '%s %s $ ' (prompt_pwd) (fish_git_prompt)
+end
 
-        case root
-
-        if not set -q __fish_prompt_cwd
-            if set -q fish_color_cwd_root
-                set -g __fish_prompt_cwd (set_color $fish_color_cwd_root)
-            else
-                set -g __fish_prompt_cwd (set_color $fish_color_cwd)
-            end
-        end
-
-        printf '%s%s%s%s# ' "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" $__git_cb
-
-        case '*'
-
-        if not set -q __fish_prompt_cwd
-            set -g __fish_prompt_cwd (set_color $fish_color_cwd)
-        end
-
-        printf '%s%s%s%s$ ' "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" $__git_cb
-
-    end
 end
