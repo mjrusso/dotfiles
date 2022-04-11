@@ -2,6 +2,11 @@
 #
 # Quick shortcut to Emacs (opens in the terminal).
 #
+# Note: exits with an error if the user is using vterm[0] from within Emacs,
+# and attempts to run this script.
+#
+# [0]: https://github.com/akermu/emacs-libvterm
+#
 # USAGE:
 #
 #   $ et
@@ -10,6 +15,11 @@
 #   $ et .
 #   $ et /usr/local
 #   # => opens the specified directory in your editor
+
+if [[ "$INSIDE_EMACS" = "vterm" ]]; then
+  echo "Refusing to launch Emacs from inside Emacs: Emacsception denied"
+  exit 1
+fi
 
 if test "$1" == ""
 then
