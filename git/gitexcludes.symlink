@@ -1,6 +1,7 @@
 .DS_Store
 .svn
 .projectile
+.dir-locals.el
 *~
 *.swp
 *~.nib
