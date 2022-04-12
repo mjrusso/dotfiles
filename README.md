@@ -18,8 +18,6 @@ notes
 - **bin/**: Anything in `bin/` will be added to your `$PATH` and be made
   available everywhere.
 
-- **topic/\*.sh**: Any files ending in `.sh` get loaded into your environment.
-
 - **topic/\*.symlink**: Any files ending in `*.symlink` get symlinked into
   your `$HOME`. (These files get symlinked when you run `rake install`.)
 
