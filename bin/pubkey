@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# Pipe the user's public key to clipboard.
+
+more ~/.ssh/id_rsa.pub | pbcopy | echo "=> Public key copied to pasteboard."
