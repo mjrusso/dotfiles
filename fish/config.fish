@@ -3,6 +3,12 @@ set -x PATH /usr/local/bin $HOME/.cargo/bin $DOTFILES/bin ~/bin $PATH
 set -x MANPATH /usr/local/man /usr/local/mysql/man /usr/local/git/man $MANPATH
 set -x EDITOR /usr/local/bin/emacsclient
 
+# Store private environment variables (which aren't committed to the dotfiles
+# repository) in ~/.localrc.fish.
+if test -f ~/.localrc.fish
+    source ~/.localrc.fish
+end
+
 # https://medium.com/@joshuacrass/nvm-on-mac-for-fish-users-e00af124c540
 function nvm
    bass source (brew --prefix nvm)/nvm.sh --no-use ';' nvm $argv

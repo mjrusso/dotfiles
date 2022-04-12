@@ -24,8 +24,9 @@ notes
   - symlinks can be generated in cases where these standard **topic/\*.symlink**
   symlink rules do not apply; see the `:install` task of the `Rakefile` for details.
 
-- **.localrc**: Create a file called `.localrc` to store any data that you do
-  not want committed to the git repository (secrets, etc.).
+- Create a file called `~/.localrc.fish` to store any environment variables
+  that you do not want committed to this git repository (secrets, etc.). Note
+  that this file should be in your home directory, _not_ this repository.
 
 system
 ------
