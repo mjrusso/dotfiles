@@ -2,6 +2,7 @@
 .svn
 .projectile
 .dir-locals.el
+.envrc
 *~
 *.swp
 *~.nib

@@ -14,7 +14,6 @@ function nvm
    bass source (brew --prefix nvm)/nvm.sh --no-use ';' nvm $argv
 end
 set -x NVM_DIR ~/.nvm
-nvm use default --silent
 
 # https://fishshell.com/docs/current/cmds/fish_git_prompt.html
 # https://mariuszs.github.io/blog/2013/informative_git_prompt.html
@@ -52,4 +51,13 @@ if [ "$INSIDE_EMACS" = 'vterm' ]
           source "$EMACS_VTERM_PATH/etc/emacs-vterm.fish"
        end
    end
+   # Force direnv to load the .envrc file (if one exists). This automatically
+   # happens when changing directories from within vterm, but not when opening
+   # a new vterm instance. (Unclear why this is the case.)
+   if test -f ".envrc"
+       direnv reload
+   end
 end
+
+# Hook direnv into the shell: https://direnv.net/docs/hook.html
+direnv hook fish | source
