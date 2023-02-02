@@ -5,14 +5,16 @@
   default = current
 [core]
   excludesfile = ~/.gitexcludes
+[init]
+  defaultBranch = main
 [alias]
   d   = diff
   dc  = diff --cached
   f   = fetch
   fo  = fetch origin
   co  = checkout
-  com = checkout master
-  pom = pull origin master
+  com = checkout main
+  pom = pull origin main
   cod = checkout develop
   pod = pull origin develop
   st  = status -sb
