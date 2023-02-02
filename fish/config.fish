@@ -3,6 +3,10 @@ set -x PATH /usr/local/bin /usr/local/opt/curl/bin $HOME/.cargo/bin $DOTFILES/bi
 set -x MANPATH /usr/local/man /usr/local/mysql/man /usr/local/git/man $MANPATH
 set -x EDITOR /usr/local/bin/emacsclient
 
+# Support Homebrew on Apple Silicon. This is a no-op if the directory doesn't
+# exist, so it's safe to use on Intel-based machines.
+fish_add_path /opt/homebrew/bin
+
 # To collect command completions for all commands run:
 #
 #   `fish_update_completions`
