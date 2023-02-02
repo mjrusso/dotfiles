@@ -70,4 +70,5 @@ if [ "$INSIDE_EMACS" = 'vterm' ]
 end
 
 # Hook direnv into the shell: https://direnv.net/docs/hook.html
+# To install direnv: `brew install direnv`
 direnv hook fish | source
