@@ -20,6 +20,9 @@ if test -f ~/.localrc.fish
 end
 
 # https://medium.com/@joshuacrass/nvm-on-mac-for-fish-users-e00af124c540
+# https://github.com/jorgebucaran/fisher
+# https://github.com/edc/bass
+# `brew install fisher; fisher install edc/bass; brew install nvm`
 function nvm
    bass source (brew --prefix nvm)/nvm.sh --no-use ';' nvm $argv
 end
