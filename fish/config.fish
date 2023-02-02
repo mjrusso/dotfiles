@@ -3,6 +3,12 @@ set -x PATH /usr/local/bin /usr/local/opt/curl/bin $HOME/.cargo/bin $DOTFILES/bi
 set -x MANPATH /usr/local/man /usr/local/mysql/man /usr/local/git/man $MANPATH
 set -x EDITOR /usr/local/bin/emacsclient
 
+# To collect command completions for all commands run:
+#
+#   `fish_update_completions`
+#
+# Also see: https://gist.github.com/gagarine/cf3f65f9be6aa0e105b184376f765262
+
 # Store private environment variables (which aren't committed to the dotfiles
 # repository) in ~/.localrc.fish.
 if test -f ~/.localrc.fish
