@@ -1,7 +1,7 @@
 set -x DOTFILES $HOME/.dotfiles
 set -x PATH /usr/local/bin /usr/local/opt/curl/bin $HOME/.cargo/bin $DOTFILES/bin ~/bin $PATH
 set -x MANPATH /usr/local/man /usr/local/mysql/man /usr/local/git/man $MANPATH
-set -x EDITOR /usr/local/bin/emacsclient
+set -x EDITOR (which emacsclient)
 
 # Support Homebrew on Apple Silicon. This is a no-op if the directory doesn't
 # exist, so it's safe to use on Intel-based machines.
