@@ -51,7 +51,26 @@ function fish_prompt
     set -g __fish_git_prompt_color_untrackedfiles $fish_color_normal
     set -g __fish_git_prompt_color_cleanstate green
 
-    printf '%s %s $ ' (prompt_pwd) (fish_git_prompt)
+    # The exit status of the most recently-run command.
+    # See: https://superuser.com/a/893187
+    set -l _display_status $status
+
+    set_color blue
+    echo -n @(prompt_hostname)
+
+    set_color normal
+    echo -n " "(prompt_pwd)(fish_git_prompt)" "
+
+    if test $_display_status -eq 0
+        set_color green
+        echo -n '$'
+    else
+        set_color red
+        echo -n [$_display_status] '>'
+    end
+
+    set_color normal
+    echo -n " "
 end
 
 # Shell-side configuration for vterm.
