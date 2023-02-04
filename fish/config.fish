@@ -56,17 +56,20 @@ function fish_prompt
     set -l _display_status $status
 
     set_color blue
-    echo -n @(prompt_hostname)
+    echo -n @(prompt_hostname) ""
 
     set_color normal
-    echo -n " "(prompt_pwd)(fish_git_prompt)" "
+    echo -n (prompt_pwd)
+    echo -n (fish_git_prompt)
 
     if test $_display_status -eq 0
         set_color green
-        echo -n '$'
+        echo -n ' $'
     else
         set_color red
-        echo -n [$_display_status] '>'
+        echo -n " "
+        echo -n [$_display_status]
+        echo -n " >"
     end
 
     set_color normal
