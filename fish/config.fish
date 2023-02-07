@@ -18,15 +18,6 @@ if test -f ~/.localrc.fish
     source ~/.localrc.fish
 end
 
-# https://medium.com/@joshuacrass/nvm-on-mac-for-fish-users-e00af124c540
-# https://github.com/jorgebucaran/fisher
-# https://github.com/edc/bass
-# `brew install fisher; fisher install edc/bass; brew install nvm`
-function nvm
-   bass source (brew --prefix nvm)/nvm.sh --no-use ';' nvm $argv
-end
-set -x NVM_DIR ~/.nvm
-
 # https://fishshell.com/docs/current/cmds/fish_git_prompt.html
 # https://mariuszs.github.io/blog/2013/informative_git_prompt.html
 function fish_prompt
@@ -94,5 +85,13 @@ if [ "$INSIDE_EMACS" = 'vterm' ]
 end
 
 # Hook direnv into the shell: https://direnv.net/docs/hook.html
-# To install direnv: `brew install direnv`
 direnv hook fish | source
+
+# Configure asdf and asdf-direnv.
+# https://asdf-vm.com/
+# https://github.com/asdf-community/asdf-direnv
+
+set -x ASDF_DIR (brew --prefix asdf)/libexec
+set -x ASDF_DIRENV_BIN (which direnv)
+
+fish_add_path "$ASDF_DIR/bin"

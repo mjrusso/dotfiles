@@ -33,6 +33,63 @@ system
 
 OS X, with the [Homebrew package manager](http://mxcl.github.com/homebrew/).
 
+dependencies
+------------
+
+Assumes that [fish](https://fishshell.com/) is the default shell.
+
+Requires [direnv](https://direnv.net/), [asdf](https://asdf-vm.com/), and
+[asdf-direnv](https://github.com/asdf-community/asdf-direnv).
+
+To install `direnv`: `brew install direnv`
+
+(`direnv` is already [hooked into the
+shell](https://direnv.net/docs/hook.html); see
+[config.fish](./fish/config.fish).)
+
+To install `asdf`: `brew install asdf`
+
+To install `asdf-direnv`: `asdf plugin-add direnv`
+
+After installing `asdf`, ignore the advice to source _asdf.fish_ (i.e., do *not* run:
+`source (brew --prefix asdf)/libexec/asdf.fish`).
+
+Next, set up `asdf` with `direnv`: `asdf direnv setup --shell fish --version system`
+
+Review the files generated and/or modified by `asdf direnv setup`, and delete
+`.config/fish/conf.d/asdf_direnv.fish`.
+
+(All of the required sourcing is already configured in
+[config.fish](./fish/config.fish).)
+
+Install the relevant `asdf` plugins; for example, for Elixir:
+
+```bash
+asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
+```
+
+To use `asdf`, add a `.tool-versions` file in the root of your project folder.
+Continuing the Elixir example:
+
+``` bash
+$ cat .tool-versions
+elixir 1.14.3
+erlang 25.2.2
+```
+
+And, in the root of the project folder, add a `.envrc` file with the following
+contents:
+
+``` bash
+$ cat .envrc
+use asdf
+```
+
+The first time `cd`ing into the project directory, run `direnv allow`.
+
+Also see: [.asdfrc](./asdf/asdfrc.symlink)
+
 thanks
 ------
 

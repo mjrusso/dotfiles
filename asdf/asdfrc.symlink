@@ -1,0 +1,8 @@
+#
+# https://asdf-vm.com/manage/configuration.html
+#
+
+# Read version files used by other version managers. (Support varies based on
+# the specific asdf plugin. For example, asdf-nodejs supports both .nvmrc and
+# .node-version files, when `legacy_version_file = yes`.)
+legacy_version_file = yes
