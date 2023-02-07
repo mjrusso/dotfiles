@@ -1,6 +1,10 @@
 set -x DOTFILES $HOME/.dotfiles
-set -x PATH /usr/local/bin /usr/local/opt/curl/bin $HOME/.cargo/bin $DOTFILES/bin ~/bin $PATH
-set -x EDITOR (which emacsclient)
+
+fish_add_path ~/bin
+fish_add_path $DOTFILES/bin
+fish_add_path $HOME/.cargo/bin
+fish_add_path (brew --prefix curl)/bin
+fish_add_path /usr/local/bin
 
 # Support Homebrew on Apple Silicon. This is a no-op if the directory doesn't
 # exist, so it's safe to use on Intel-based machines.
@@ -12,11 +16,25 @@ fish_add_path /opt/homebrew/bin
 #
 # Also see: https://gist.github.com/gagarine/cf3f65f9be6aa0e105b184376f765262
 
+# Configure asdf and asdf-direnv.
+# https://asdf-vm.com/
+# https://github.com/asdf-community/asdf-direnv
+
+set -x ASDF_DIR (brew --prefix asdf)/libexec
+set -x ASDF_DIRENV_BIN (which direnv)
+
+fish_add_path "$ASDF_DIR/bin"
+
+# Hook direnv into the shell: https://direnv.net/docs/hook.html
+direnv hook fish | source
+
 # Store private environment variables (which aren't committed to the dotfiles
 # repository) in ~/.localrc.fish.
 if test -f ~/.localrc.fish
     source ~/.localrc.fish
 end
+
+set -x EDITOR (which emacsclient)
 
 # https://fishshell.com/docs/current/cmds/fish_git_prompt.html
 # https://mariuszs.github.io/blog/2013/informative_git_prompt.html
@@ -83,15 +101,3 @@ if [ "$INSIDE_EMACS" = 'vterm' ]
        direnv reload
    end
 end
-
-# Hook direnv into the shell: https://direnv.net/docs/hook.html
-direnv hook fish | source
-
-# Configure asdf and asdf-direnv.
-# https://asdf-vm.com/
-# https://github.com/asdf-community/asdf-direnv
-
-set -x ASDF_DIR (brew --prefix asdf)/libexec
-set -x ASDF_DIRENV_BIN (which direnv)
-
-fish_add_path "$ASDF_DIR/bin"
