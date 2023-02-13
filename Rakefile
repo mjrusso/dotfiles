@@ -77,8 +77,6 @@ task :install => [:generate_gitconfig_from_template] do
     `ln -s "$PWD/#{path}" "#{target}"`
   end
 
-  `source ~/.config/fish/config.fish`
-
 end
 
 desc "Generate a gitconfig file from the template based on user input"
