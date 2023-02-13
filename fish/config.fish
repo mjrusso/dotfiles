@@ -39,6 +39,13 @@ set -x EDITOR (which emacsclient)
 # https://fishshell.com/docs/current/cmds/fish_git_prompt.html
 # https://mariuszs.github.io/blog/2013/informative_git_prompt.html
 function fish_prompt
+    # Disable fancy formatting when using Tramp:
+    # https://www.gnu.org/software/tramp/#index-FAQ
+    if test $TERM = "dumb"
+        echo "\$ "
+        return
+    end
+
     set -g __fish_git_prompt_show_informative_status 1
     set -g __fish_git_prompt_hide_untrackedfiles 1
 
