@@ -101,6 +101,13 @@ if [ "$INSIDE_EMACS" = 'vterm' ]
           source "$EMACS_VTERM_PATH/etc/emacs-vterm.fish"
        end
    end
+
+   # https://github.com/akermu/emacs-libvterm#vterm-clear-scrollback
+   function clear
+       vterm_printf "51;Evterm-clear-scrollback";
+       tput clear;
+   end
+
    # Force direnv to load the .envrc file (if one exists). This automatically
    # happens when changing directories from within vterm, but not when opening
    # a new vterm instance. (Unclear why this is the case.)
