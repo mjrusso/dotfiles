@@ -1,6 +1,16 @@
 mjrusso's dotfiles
 ==================
 
+> [!IMPORTANT]
+>
+> I no longer use these dotfiles; consider them deprecated.
+>
+> See [nixos-config](https://github.com/mjrusso/nixos-config) for my system
+> configuration, and [.emacs.d](https://github.com/mjrusso/.emacs.d) for my
+> Emacs configuration.
+
+---
+
 My personalized system configuration. ([Inspiration](http://zachholman.com/2010/08/dotfiles-are-meant-to-be-forked/))
 
 Also see: [my Emacs configuration](https://github.com/mjrusso/.emacs.d).
