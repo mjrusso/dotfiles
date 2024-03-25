@@ -2,7 +2,6 @@ set -x DOTFILES $HOME/.dotfiles
 
 fish_add_path ~/bin
 fish_add_path $DOTFILES/bin
-fish_add_path $HOME/.cargo/bin
 fish_add_path /usr/local/bin
 
 # Support Homebrew on Apple Silicon. This is a no-op if the directory doesn't
